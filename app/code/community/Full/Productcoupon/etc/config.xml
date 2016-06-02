@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Full_Productcoupon>
+            <version>0.0.1</version>
+        </Full_Productcoupon>
+    </modules>
+
+    <global>
+        <blocks>
+            <adminhtml>
+                <rewrite>
+                    <promo_quote_edit_tab_actions>Full_Productcoupon_Block_Promo_Quote_Edit_Tab_Actions</promo_quote_edit_tab_actions>
+                </rewrite>
+            </adminhtml>		
+        </blocks>    
+        
+        <resources>
+            <coupon_fields>
+                <setup>
+                    <module>Full_Productcoupon</module>
+                    <class>Mage_Catalog_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </coupon_fields>
+            <coupon_fields_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </coupon_fields_write>
+            <coupon_fields_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </coupon_fields_read>
+        </resources>
+
+        <models>
+            <salesrule>
+                <rewrite>
+                    <observer>Full_Productcoupon_Model_Observer</observer>
+                </rewrite>
+            </salesrule>
+        </models>
+        
+    </global>
+    
+    <frontend>
+        <events>
+            <checkout_cart_coupon_added>
+                <observers>
+                    <Full_Productcoupon_addfreeproduct>
+                        <class>Full_Productcoupon_Model_Observer</class>
+                        <method>addFreeProduct</method>
+                    </Full_Productcoupon_addfreeproduct>
+                </observers>
+            </checkout_cart_coupon_added>
+
+            <checkout_cart_coupon_removed>
+                <observers>
+                    <Full_Productcoupon_removefreeproduct>
+                        <class>Full_Productcoupon_Model_Observer</class>
+                        <method>removeFreeProduct</method>
+                    </Full_Productcoupon_removefreeproduct>
+                </observers>
+            </checkout_cart_coupon_removed>
+
+            <sales_quote_collect_totals_before>
+                <observers>
+                    <Full_Productcoupon_prepare>
+                        <class>Full_Productcoupon_Model_Observer</class>
+                        <method>prepareRecalculation</method>
+                    </Full_Productcoupon_prepare>
+                </observers>
+            </sales_quote_collect_totals_before>
+
+            <sales_quote_collect_totals_after>
+                <observers>
+                    <Full_Productcoupon_recalculate>
+                        <class>Full_Productcoupon_Model_Observer</class>
+                        <method>recalculate</method>
+                    </Full_Productcoupon_recalculate>
+                </observers>
+            </sales_quote_collect_totals_after>
+
+            <checkout_cart_update_items_before>
+                <observers>
+                    <Full_Productcoupon_controlfreeproduct>
+                        <class>Full_Productcoupon_Model_Observer</class>
+                        <method>controlFreeProduct</method>
+                    </Full_Productcoupon_controlfreeproduct>
+                </observers>
+            </checkout_cart_update_items_before>
+        </events>
+    </frontend>
+</config>

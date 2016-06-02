@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Full_Productcoupon>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Full_Productcoupon>       
+    </modules>
+</config>

@@ -48,6 +48,16 @@
     </global>
     
     <frontend>
+        <routers>
+            <checkout>
+                <args>
+                    <modules>
+                        <Full_Productcoupon before="Mage_Checkout_CartController">Full_Productcoupon</Full_Productcoupon>
+                    </modules>
+                </args>
+            </checkout>
+        </routers>
+
         <events>
             <checkout_cart_coupon_added>
                 <observers>

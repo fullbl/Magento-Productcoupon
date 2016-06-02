@@ -30,7 +30,7 @@ class Full_Productcoupon_Model_Observer extends Mage_SalesRule_Model_Observer{
                 $item->setCustomPrice(0);
                 $item->setOriginalCustomPrice(0);            
                 $item->getProduct()->setIsSuperMode(true); 
-                //$item->save();
+                $item->save();
 
             }
 

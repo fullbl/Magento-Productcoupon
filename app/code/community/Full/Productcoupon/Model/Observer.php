@@ -19,13 +19,10 @@ class Full_Productcoupon_Model_Observer extends Mage_SalesRule_Model_Observer{
             $rule = Mage::getModel('salesrule/rule')->load($ruleId);
             if( $productId = $rule->getCouponItemId() ){            
                 $product = Mage::getModel('catalog/product')->load($productId);
-                if ( !$observer->getQuote()->hasProductId($productId)) {                    
-                    $item = $observer->getQuote()->addProduct( $product );           
-                }
-                else{
-                    $item = $observer->getQuote()->getItemByProduct($product);                
-                }
+                $product->addCustomOption('free', 'true');
+                $item = $observer->getQuote()->addProduct( $product ); 
                 /*  @var $item Mage_Sales_Model_Quote_Item*/
+                $item->addOption($product->getCustomOptions());
                 $item->setQty(1);
                 $item->setCustomPrice(0);
                 $item->setOriginalCustomPrice(0);            
